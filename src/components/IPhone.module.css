@@ -1,0 +1,25 @@
+.iphone {
+  margin: 1rem;
+  padding: 1rem;
+  /*background-color: #020005;*/
+  background-color: #14213d;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+}
+
+li.iphone {
+  list-style-type: none;
+}
+
+.iphone h2 {
+  font-size: 2rem;
+  color: #fcbf49;
+}
+
+.iphone h3 {
+  color: #eae2b7;
+  margin: 0;
+  font-size: 1rem;
+}
