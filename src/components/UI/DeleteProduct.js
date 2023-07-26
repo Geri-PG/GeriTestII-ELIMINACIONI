@@ -14,7 +14,10 @@ function DeleteProduct({ productId }) {
         console.log(data.id);
         dispatch(deletePhone(productId));
       })
-      .catch((error) => console.log("An error occurred", error));
+      .catch((error) => console.log("An error occurred", error))
+      .finally(() => {
+        dispatch(deletePhone(productId));
+      });
   };
 
   return <button onClick={deleteProductHandler}>Delete</button>;

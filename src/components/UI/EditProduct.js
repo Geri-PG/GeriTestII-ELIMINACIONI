@@ -60,6 +60,7 @@ const EditProduct = () => {
       const data = await response.json();
       const product = {
         id: data.id,
+        thumbnail: data.thumbnail,
         title: data.title,
         description: data.description,
         brand: data.brand,
@@ -114,6 +115,14 @@ const EditProduct = () => {
             <LoadingSpinner />
           ) : (
             <React.Fragment>
+              <header>
+                <h4 className={classes.title}>Image:</h4>
+                <img
+                  className={classes.thumbnail}
+                  src={editProduct.thumbnail}
+                  alt="Thumbnail"
+                />
+              </header>
               <FormInput
                 title="Title"
                 placeholder="Product Title"
