@@ -39,33 +39,35 @@ const AddProduct = () => {
           brand: newProduct.brand,
         }),
       })
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(addPhone(newProduct));
-        setNewProduct(emptyProduct);
-        navigate('/');
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          dispatch(addPhone(newProduct));
+          setNewProduct(emptyProduct);
+          navigate("/");
+        });
     }
   };
 
-  function validateInputs () {
-    const validationErrorsCopy = {...validationErrors}
+  function validateInputs() {
+    const validationErrorsCopy = { ...validationErrors };
     let isValid = true;
     if (!newProduct.title) {
-      validationErrorsCopy.title = {messages: ['Title cannot be empty']};
+      validationErrorsCopy.title = { messages: ["Title cannot be empty"] };
       isValid = false;
     } else {
       validationErrorsCopy.title = {};
     }
     if (!newProduct.description) {
-      validationErrorsCopy.description = {messages: ['Description cannot be empty']};
+      validationErrorsCopy.description = {
+        messages: ["Description cannot be empty"],
+      };
       isValid = false;
     } else {
       validationErrorsCopy.description = {};
     }
     if (!newProduct.brand) {
       validationErrorsCopy.brand = {
-        messages: ['Brand cannot be empty']
+        messages: ["Brand cannot be empty"],
       };
       isValid = false;
     } else {
@@ -78,32 +80,42 @@ const AddProduct = () => {
   }
 
   return (
-    <div className={classes['add-product-container']}>
+    <div className={classes["add-product-container"]}>
       <h1>Add product</h1>
       <div className={classes["form-container"]}>
         <FormInput
-            title="Title"
-            placeholder="Product Title"
-            validationErrors={validationErrors.title?.messages || []}
-            onChange={value => (inputChangeHandler({ name: 'title', value }))}
+          title="Title"
+          placeholder="Product Title"
+          validationErrors={validationErrors.title?.messages || []}
+          onChange={(value) => inputChangeHandler({ name: "title", value })}
         />
         <FormInput
-            title="Description"
-            placeholder="Product Description"
-            validationErrors={validationErrors.description?.messages || []}
-            onChange={value => (inputChangeHandler({ name: 'description', value }))}
+          title="Description"
+          placeholder="Product Description"
+          validationErrors={validationErrors.description?.messages || []}
+          onChange={(value) =>
+            inputChangeHandler({ name: "description", value })
+          }
         />
         <FormInput
-            title="Brand"
-            placeholder="Product Brand"
-            validationErrors={validationErrors.brand?.messages || []}
-            onChange={value => (inputChangeHandler({ name: 'brand', value }))}
+          title="Brand"
+          placeholder="Product Brand"
+          validationErrors={validationErrors.brand?.messages || []}
+          onChange={(value) => inputChangeHandler({ name: "brand", value })}
         />
-        <footer className={classes['actions']}>
-          <button className={classes["form-button"]} onClick={() => { navigate(-1) }}>
+        <footer className={classes["actions"]}>
+          <button
+            className={classes["form-button"]}
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
             Cancel
           </button>
-          <button className={classes["form-button"]} onClick={addProductHandler}>
+          <button
+            className={classes["form-button"]}
+            onClick={addProductHandler}
+          >
             Add
           </button>
         </footer>

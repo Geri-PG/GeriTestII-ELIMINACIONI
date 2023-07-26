@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { deleteProduct } from "./store/productsSlice"; // Import the deleteProduct action
+import { deleteProduct } from "./store/productsSlice";
 
 function ProductList() {
   const products = useSelector((state) => state.products);
@@ -16,7 +16,7 @@ function ProductList() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data.id);
-        dispatch(deleteProduct(id)); // Dispatch the deleteProduct action with the product id
+        dispatch(deleteProduct(id));
       });
   };
 
@@ -33,8 +33,12 @@ function ProductList() {
             style={{ width: "200px" }}
           />
           <Link to={`/product/${product.id}`}>View Details</Link>
-          <button onClick={() => { navigate(`/product/edit/${product.id}`) }}>
-              Edit
+          <button
+            onClick={() => {
+              navigate(`/product/edit/${product.id}`);
+            }}
+          >
+            Edit
           </button>
           <button onClick={() => handleDelete(product.id)}>Delete</button>
         </div>

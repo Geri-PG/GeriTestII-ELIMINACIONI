@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ProductItem from './components/UI/ProductItem';
+import ProductItem from "./components/UI/ProductItem";
 import {
   setPhones,
   updateCount,
@@ -17,7 +17,7 @@ function App() {
   const navigate = useNavigate();
 
   const fetchPhonesHandler = useCallback(async () => {
-    console.log('fetch phones')
+    console.log("fetch phones");
     setIsLoading(true);
     try {
       const response = await fetch("https://dummyjson.com/products");
@@ -25,6 +25,7 @@ function App() {
 
       const newPhone = data.products.map((phoneData) => ({
         id: phoneData.id,
+        thumbnail: phoneData.thumbnail,
         title: phoneData.title,
         description: phoneData.description,
         brand: phoneData.brand,
@@ -48,37 +49,41 @@ function App() {
   };
 
   return (
-      <React.Fragment>
-        {/*<AddProduct />*/}
-        <header className="header">
-          <section>
-            <button onClick={fetchPhonesHandler}>
-              Fetch products
-            </button>
-            <button onClick={() => { navigate('/product/add')}}>
-              Add product
-            </button>
-          </section>
-        </header>
-          <section>
-            {isLoading ? (
-                <LoadingSpinner />
-            ) : (
-                <React.Fragment>
+    <React.Fragment>
+      {/*<AddProduct />*/}
+      <header className="header">
+        <section>
+          <button onClick={fetchPhonesHandler}>Fetch products</button>
+          <button
+            onClick={() => {
+              navigate("/product/add");
+            }}
+          >
+            Add product
+          </button>
+        </section>
+      </header>
+      <section>
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <React.Fragment>
             {phones.length === 0 ? (
               <p>No phones to display</p>
             ) : (
-              phones.slice(0, count).map((product) => (
-                <ProductItem key={product.id} product={product} />
-              ))
+              phones
+                .slice(0, count)
+                .map((product) => (
+                  <ProductItem key={product.id} product={product} />
+                ))
             )}
             {count < phones.length && (
               <button onClick={loadMoreHandler}>Load More</button>
             )}
-                </React.Fragment>
+          </React.Fragment>
         )}
-          </section>
-      </React.Fragment>
+      </section>
+    </React.Fragment>
   );
 }
 

@@ -9,12 +9,12 @@ function DeleteProduct({ productId }) {
     fetch(`https://dummyjson.com/products/${productId}`, {
       method: "DELETE",
     })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data.id);
-          dispatch(deletePhone(productId));
-        })
-        .catch(error => (console.log('An error occurred', error)));
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.id);
+        dispatch(deletePhone(productId));
+      })
+      .catch((error) => console.log("An error occurred", error));
   };
 
   return <button onClick={deleteProductHandler}>Delete</button>;
