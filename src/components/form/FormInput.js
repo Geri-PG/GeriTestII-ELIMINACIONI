@@ -20,7 +20,7 @@ export default function FormInput({
     if (value) {
       setInputValue(value);
     }
-  }, []);
+  }, [value]);
 
   return (
     <div className={classes["form-group"]}>

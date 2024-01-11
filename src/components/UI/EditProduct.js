@@ -20,7 +20,7 @@ const EditProduct = () => {
 
   useEffect(() => {
     fetchProduct();
-  }, [id]);
+  }, [fetchProduct, id]);
 
   function validateInputs() {
     const validationErrorsCopy = { ...validationErrors };
@@ -53,6 +53,7 @@ const EditProduct = () => {
     return isValid;
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function fetchProduct() {
     setIsFetching(true);
     try {

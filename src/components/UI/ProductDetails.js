@@ -17,8 +17,9 @@ function ProductDetails(props) {
 
   useEffect(() => {
     fetchProduct();
-  }, []);
+  }, [fetchProduct]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function fetchProduct() {
     setIsFetching(true);
     try {
